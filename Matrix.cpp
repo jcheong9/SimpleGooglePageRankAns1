@@ -34,12 +34,6 @@ void Matrix::set_value(int r, int c, double value){
     }
     vectMatrix.at(r).at(c) = value;
 }
-double Matrix::get_value(int r, int c){
-    if(r > width || c > height || r < 0 || c < 0){
-        throw  "integers are negative or too large.";
-    }
-    return vectMatrix.at(r).at(c);
-}
 void Matrix::clear(){
     for (int i = 0; i < width; i++) {
         vector<double> temp;
@@ -48,6 +42,12 @@ void Matrix::clear(){
             vectMatrix.at(i).push_back(0.0);
         }
     }
+}
+void Matrix::mySwap(Matrix a, Matrix b) {
+    using std::swap;
+    swap(a.width,b.width);
+    swap(a.height,b.height);
+    swap(a.vectMatrix,b.vectMatrix);
 }
 ostream& operator<<(ostream& os, const Matrix& matrix){
 
@@ -60,10 +60,7 @@ ostream& operator<<(ostream& os, const Matrix& matrix){
 }
 
 bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
-    if(matrixOne.width != matrixTwo.width){
-        return false;
-    }
-    if(matrixOne.height != matrixTwo.height){
+    if(matrixOne.width != matrixTwo.width && matrixOne.height != matrixTwo.height){
         return false;
     }
 
@@ -74,4 +71,76 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
         }
     }
 }
+bool operator!=(const Matrix& matrixOne, const Matrix& matrixTwo){
+    return (!operator==(matrixOne,matrixTwo));
+}
+Matrix& Matrix::operator+=(const Matrix& matrixOne){
+    Matrix temp = operator+(*this,matrixOne);
+    return temp;;
+}
+Matrix& Matrix::operator-=(const Matrix& matrixOne) {
+    Matrix temp = operator-(*this,matrixOne);
+    return temp;;
+}
+Matrix Matrix::operator++(){
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < height; j++)
+            vectMatrix[i][j] += 1;
+    return *this;
+};
+Matrix Matrix::operator++(int){
+    Matrix tmp(*this);
+    operator++();
+    return tmp;
+};
+Matrix Matrix::operator--(){
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < height; j++)
+            vectMatrix[i][j] -= 1;
+    return *this;
+};
+Matrix Matrix::operator--(int){
+    Matrix tmp(*this);
+    operator--();
+    return tmp;
+};
+ Matrix operator+(Matrix lhs, const Matrix& rhs){
+     if (lhs.width != rhs.width && lhs.height != rhs.height) {
+         throw "The martix is not the same size.";
+     }
+     Matrix temp {lhs.width,lhs.height};
+     for (int i = 0; i < lhs.width; i++)
+         for (int j = 0; j < lhs.height; j++){
+             temp.vectMatrix.at(i).at(j) = lhs.vectMatrix.at(i).at(j)
+                     + rhs.vectMatrix.at(i).at(j);
+         }
+     return temp;
+ }
+ Matrix operator-(Matrix lhs, const Matrix& rhs){
+     if (lhs.width != rhs.width && lhs.height != rhs.height) {
+         throw "The matrix is not the same size.";
+     }
+     Matrix temp {lhs.width,lhs.height};
+     for (int i = 0; i < lhs.width; i++)
+         for (int j = 0; j < lhs.height; j++){
+             temp.vectMatrix.at(i).at(j) = lhs.vectMatrix.at(i).at(j)
+                                           - rhs.vectMatrix.at(i).at(j);
+         }
+     return temp;
+ }
+ Matrix operator*(Matrix lhs, const Matrix& rhs) {
+     if (lhs.height != rhs.width) {
+         throw "The matrix lhs columns must be same as matrix rhs rows";
+     }
+     Matrix temp{lhs.width, rhs.height};
+     double sum = 0;
+     for (int i = 0; i < lhs.width; i++)
+         for (int j = 0; j < rhs.width; j++) {
+             sum +=
+         }
+ 
+ }
+ Matrix Matrix::operator*=(const Matrix& matrixOne){
+
+ }
 

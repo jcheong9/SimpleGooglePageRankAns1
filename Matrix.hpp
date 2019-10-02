@@ -14,8 +14,6 @@ private:
     int width;
     int height;
     vector<vector<double>> vectMatrix;
-    friend ostream& operator<<(ostream& os, const Matrix& matrix);
-    friend bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo);
 public:
     Matrix(){
         vectMatrix = createMatrix(1,1);
@@ -42,37 +40,34 @@ public:
         height = sqrt(sr);
         width = sqrt(sr);
         vectMatrix = createMatrixSquare(vec);
-
     }
-
     vector<vector<double>> createMatrixSquare(vector<double > vec);
     vector<vector<double>> createMatrix(int w, int h);
     void set_value(int r, int c, double value);
-    double get_value(int r, int c);
     void clear();
+    double const get_value(int r, int c){
+        if(r > width || c > height || r < 0 || c < 0){
+            throw  "integers are negative or too large.";
+        }
+        return vectMatrix.at(r).at(c);
+    };
+    void mySwap(Matrix a, Matrix b);
+    friend ostream& operator<<(ostream& os, const Matrix& matrix);
+    friend bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo);
+    friend bool operator!=(const Matrix& matrixOne, const Matrix& matrixTwo);
+    friend Matrix operator-(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator+(Matrix lhs, const Matrix& rhs);
+    friend Matrix operator*(Matrix lhs, const Matrix& rhs);
+    Matrix operator*=(const Matrix& matrixOne);
+    Matrix& operator+=(const Matrix& matrixOne);
+    Matrix& operator-=(const Matrix& matrixOne);
+    Matrix operator++();
+    Matrix operator++(int);
+    Matrix operator--();
+    Matrix operator--(int);
+    Matrix& operator=(Matrix a);
 
-    Matrix operator++(){
-        for (int i = 0; i < width; i++)
-            for (int j = 0; j < height; j++)
-                vectMatrix[i][j] += 1;
-        return *this;
-    };
-    Matrix operator++(int){
-        Matrix tmp(*this);
-        operator++();
-        return tmp;
-    };
-    Matrix operator--(){
-        for (int i = 0; i < width; i++)
-            for (int j = 0; j < height; j++)
-                vectMatrix[i][j] -= 1;
-        return *this;
-    };
-    Matrix operator--(int){
-        Matrix tmp(*this);
-        operator--();
-        return tmp;
-    };
     ~Matrix(){};
 };
+
 #endif //MATRIX_MATRIX_HPP
