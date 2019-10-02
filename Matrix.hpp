@@ -52,7 +52,26 @@ public:
     void clear();
 
     Matrix operator++(){
-
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                vectMatrix[i][j] += 1;
+        return *this;
+    };
+    Matrix operator++(int){
+        Matrix tmp(*this);
+        operator++();
+        return tmp;
+    };
+    Matrix operator--(){
+        for (int i = 0; i < width; i++)
+            for (int j = 0; j < height; j++)
+                vectMatrix[i][j] -= 1;
+        return *this;
+    };
+    Matrix operator--(int){
+        Matrix tmp(*this);
+        operator--();
+        return tmp;
     };
     ~Matrix(){};
 };
