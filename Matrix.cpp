@@ -53,7 +53,6 @@ Matrix& Matrix::operator=(Matrix a){
         mySwap(*this, a);
         return *this;
     }
-
 }
 //helper function for operator= overriding
 void Matrix::mySwap(Matrix a, Matrix b) {
