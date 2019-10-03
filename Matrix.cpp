@@ -65,7 +65,7 @@ void Matrix::mySwap(Matrix a, Matrix b) {
 ostream& operator<<(ostream& os, const Matrix& matrix){
     for (int i = 0; i < matrix.width; i++) {
         for (int j = 0; j < matrix.height; j++) {
-            cout << matrix.vectMatrix.at(i).at(j) << " ";
+            cout << matrix.vectMatrix.at(i).at(j) << "\t";
         }
         cout << endl;
     }
