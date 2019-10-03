@@ -1,9 +1,11 @@
 #include <iostream>
-#include "Matrix.hpp"
+#include "ConnectivityMatrix.hpp"
 
-
+const int sizeConMatrix = 4;
 int main() {
-    cout << "Hello, World!" << std::endl;
     
+    ConnectivityMatrix conMatrix{sizeConMatrix};
+
+    cout << conMatrix;
     return 0;
 }

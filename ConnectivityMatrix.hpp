@@ -6,14 +6,10 @@
 #define MATRIX_CONNECTIVITYMATRIX_HPP
 
 #include "Matrix.hpp"
-const int ConnectivityMatrixSize = 4;
 class ConnectivityMatrix: public Matrix{
-private:
-    int width = ConnectivityMatrixSize;
-    int height = ConnectivityMatrixSize;
-    vector<vector<double>> vectMatrix;
+
 public:
-    ConnectivityMatrix(const int& width,const int& height) : Matrix( width, height){
+    ConnectivityMatrix(const int& size) : Matrix(size){
         makeConnectivityMatrix();
     }
     //function prototype

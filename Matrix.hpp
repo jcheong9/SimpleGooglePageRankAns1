@@ -54,6 +54,15 @@ public:
         }
         return vectMatrix.at(r).at(c);
     };
+    const int getWidth(){
+        return width;
+    }
+    const int getHeight(){
+        return height;
+    }
+    const vector<vector<double>> getMatrixVector(){
+        return vectMatrix;
+    }
     //functions prototypes
     vector<vector<double>> createMatrixSquare(vector<double > vec);
     static vector<vector<double>> createMatrix(int w, int h);
