@@ -117,7 +117,7 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
          Matrix temp{lhs.width, rhs.height};
          double sum = 0;
          for (int i = 0; i < lhs.width; i++) {
-             for (int j = 0; j < rhs.width; j++) {
+             for (int j = 0; j < rhs.height; j++) {
                  for (int k = 0; k < rhs.width; k++) {
                      temp.vectMatrix.at(i).at(j) += (lhs.vectMatrix.at(i).at(k)
                              * rhs.vectMatrix.at(k).at(j));

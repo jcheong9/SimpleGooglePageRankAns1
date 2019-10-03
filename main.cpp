@@ -11,9 +11,8 @@ int main() {
     Matrix Q{sizeConMatrix};
     Matrix M{sizeConMatrix};
     Matrix rankMat{4,1};
-    Matrix tempRankMat {4,1};
-    Matrix tempRank {4,1};
     double sum;
+    double sumRank;
     //take the sum of each value and put it in vector
     for(int i = 0; i < S.getWidth(); i++){
         sum = 0;
@@ -56,11 +55,22 @@ int main() {
             rankMat.set_value(i,k,1);
 
     //Markov process until rank is stablized
-    while(rankMat == (M * rankMat)){
+    while(rankMat != (M * rankMat)){
         rankMat = (M * rankMat);
-
     }
-    cout<<tempRankMat;
-    cout << M;
+
+    //get the sum of the rank column
+    for(int i = 0;i < rankMat.getWidth();i++)
+        sumRank+=rankMat.get_value(i,rankMat.getHeight()-1);
+
+    for(int i = 0;i< rankMat.getWidth();i++) {
+        double tempValue = rankMat.get_value(i,0)/sumRank;
+        rankMat.set_value(i,0, tempValue*100);
+    }
+    //print out result and format
+    cout << "Page A: " << to_string(rankMat.get_value(0,0)).substr(0, 5) << "%" << endl;
+    cout << "Page B: " << to_string(rankMat.get_value(1,0)).substr(0, 5) << "%" << endl;
+    cout << "Page C: " << to_string(rankMat.get_value(2,0)).substr(0, 5) << "%" << endl;
+    cout << "Page D: " << to_string(rankMat.get_value(3,0)).substr(0, 4) << "%" << endl;
     return 0;
 }
