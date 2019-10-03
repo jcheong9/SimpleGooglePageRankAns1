@@ -69,7 +69,7 @@ public:
     void set_value(int r, int c, double value);
     void clear();
     Matrix& operator=(Matrix a);
-    void mySwap(Matrix a, Matrix b);
+    void mySwap(Matrix& a, Matrix& b);
     friend ostream& operator<<(ostream& os, const Matrix& matrix);
     friend bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo);
     friend bool operator!=(const Matrix& matrixOne, const Matrix& matrixTwo);

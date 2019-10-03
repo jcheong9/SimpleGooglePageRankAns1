@@ -55,7 +55,7 @@ Matrix& Matrix::operator=(Matrix a){
     }
 }
 //helper function for operator= overriding
-void Matrix::mySwap(Matrix a, Matrix b) {
+void Matrix::mySwap(Matrix& a, Matrix& b) {
     using std::swap;
     swap(a.width,b.width);
     swap(a.height,b.height);
@@ -119,8 +119,8 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
          for (int i = 0; i < lhs.width; i++) {
              for (int j = 0; j < rhs.width; j++) {
                  for (int k = 0; k < rhs.width; k++) {
-                     temp.vectMatrix.at(i).at(j) += lhs.vectMatrix.at(i).at(k)
-                             * rhs.vectMatrix.at(k).at(j);
+                     temp.vectMatrix.at(i).at(j) += (lhs.vectMatrix.at(i).at(k)
+                             * rhs.vectMatrix.at(k).at(j));
                  }
              }
          }
