@@ -16,24 +16,28 @@ int main() {
     Matrix rankMat{4,1};
     double sum;
     double sumRank = 0;
-    double numInText;
+    vector<double> numInText;
     vector<double> fileVectNumber;
-    ifstream infile("connectivity.txt");
+    ifstream infile;
+    infile.open("connectivity.txt");
+    bool open = infile.is_open();
     string line;
     stringstream stream;
 
     if (infile.is_open()) {
-
         while(!infile.eof()){
             stream.clear();
-//            getline(infile, line);
-//            stream.str(line);
-//            stream >> numInText;
-//            fileVectNumber.push_back(numInText);
+            getline(infile, line);
+            stream.str(line);
+            for (int i; stream >> i;) {
+                numInText.push_back(i);
+                if (stream.peek() == ' ')
+                    stream.ignore();
+            }
         }
     }
     infile.close();
-    Matrix connectivity{fileVectNumber};
+    Matrix connectivity{numInText};
     cout << connectivity;
 
 //take the sum of each value and put it in vector
@@ -97,3 +101,6 @@ int main() {
     cout << "Page D: " << to_string(rankMat.get_value(3,0)).substr(0, 4) << "%" << endl;
     return 0;
 }
+
+void readFile(){}
+

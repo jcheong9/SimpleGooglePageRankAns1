@@ -6,8 +6,8 @@
 vector<vector<double>> Matrix::createMatrix(int w, int h) {
     vector<vector<double> > myVector;
     for (int i = 0; i < w; i++) {
-            vector<double> temp;
-            myVector.push_back(temp);
+        vector<double> temp;
+        myVector.push_back(temp);
         for (int j = 0; j < h; j++) {
             myVector.at(i).push_back(0.0);
         }
@@ -18,12 +18,13 @@ vector<vector<double>> Matrix::createMatrix(int w, int h) {
 vector<vector<double>> Matrix::createMatrixSquare(vector<double > vec) {
     vector<vector<double >> vec2D;
     int sr = sqrt(vec.size());
-
+    int count = 0;
     for (int i = 0; i < sr; i++) {
         vector<double> temp;
         vec2D.push_back(temp);
         for (int j = 0; j < sr; j++) {
-            vec2D.at(i).push_back(0.0);
+            vec2D.at(i).push_back(vec.at(count));
+            count++;
         }
     }
     return vec2D;
@@ -145,7 +146,7 @@ Matrix& Matrix::operator-=(const Matrix& matrixOne) {
 Matrix Matrix::operator++(){
     for (int i = 0; i < row; i++)
         for (int j = 0; j < col; j++)
-            vectMatrix.at(i).at(j) += 1;
+            this->vectMatrix.at(i).at(j) += 1; //check
     return *this;
 };
 //increment by 1 to all the values in matrix postfix
@@ -158,7 +159,7 @@ Matrix Matrix::operator++(int){
 Matrix Matrix::operator--(){
     for (int i = 0; i < row; i++)
         for (int j = 0; j < col; j++)
-            vectMatrix[i][j] -= 1;
+            this->vectMatrix.at(i).at(j) -= 1; //check
     return *this;
 };
 //decrement by 1 to all the values in matrix postfix

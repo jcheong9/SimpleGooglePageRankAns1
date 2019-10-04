@@ -12,6 +12,7 @@ public:
     ConnectivityMatrix(const int& size) : Matrix(size){
         makeConnectivityMatrix();
     }
+   //ConnectivityMatrix(const vector<double&> vec) : Matrix(vec);
     //function prototype
     void makeConnectivityMatrix();
 };

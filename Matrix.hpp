@@ -54,12 +54,15 @@ public:
         }
         return vectMatrix.at(r).at(c);
     };
+    //get the row value.
     const int getRow(){
         return row;
     }
+    //get the column value
     const int getColumns(){
         return col;
     }
+    //get the vector list values.
     const vector<vector<double>> getMatrixVector(){
         return vectMatrix;
     }
