@@ -11,30 +11,30 @@
 using namespace std;
 class Matrix{
 private:
-    int width;
-    int height;
+    int row;
+    int col;
     vector<vector<double>> vectMatrix;
 public:
     //default constructor
     Matrix(){
-        width = 1;
-        height = 1;
+        row = 1;
+        col = 1;
         vectMatrix = createMatrix(1,1);
     }
     //constructor take one parameter
     Matrix(int n){
         if(n <= 0)
             throw "number enter must be greater than zero";
-        width = n;
-        height = n;
+        row = n;
+        col = n;
         vectMatrix = createMatrix(n,n);
     }
     //constructor take two parameter
     Matrix(int r, int c){
         if(r <= 0 || c <= 0)
             throw "number enter must be greater than zero";
-        width = r;
-        height = c;
+        row = r;
+        col = c;
         vectMatrix = createMatrix(r, c);
     }
     //constructor take vector parameter
@@ -43,22 +43,22 @@ public:
         if(!(sr - floor(sr)) == 0 || sr == 0) {
             throw "array must be integer square";
         }
-        height = sr;
-        width = sr;
+        col = sr;
+        row = sr;
         vectMatrix = createMatrixSquare(vec);
     }
     //get value of matrix at user's input
     double const get_value(int r, int c){
-        if(r > width || c > height || r < 0 || c < 0){
+        if(r > row || c > col || r < 0 || c < 0){
             throw  "integers are negative or too large.";
         }
         return vectMatrix.at(r).at(c);
     };
-    const int getWidth(){
-        return width;
+    const int getRow(){
+        return row;
     }
-    const int getHeight(){
-        return height;
+    const int getColumns(){
+        return col;
     }
     const vector<vector<double>> getMatrixVector(){
         return vectMatrix;
