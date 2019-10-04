@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "ConnectivityMatrix.hpp"
 
 const int sizeConMatrix = 4;
@@ -14,9 +15,27 @@ int main() {
     Matrix M{sizeConMatrix};
     Matrix rankMat{4,1};
     double sum;
-    double sumRank;
-    ifstream fin;
-    fin.open("connectivity.txt");
+    double sumRank = 0;
+    double numInText;
+    vector<double> fileVectNumber;
+    ifstream infile("connectivity.txt");
+    string line;
+    stringstream stream;
+
+    if (infile.is_open()) {
+
+        while(!infile.eof()){
+            stream.clear();
+//            getline(infile, line);
+//            stream.str(line);
+//            stream >> numInText;
+//            fileVectNumber.push_back(numInText);
+        }
+    }
+    infile.close();
+    Matrix connectivity{fileVectNumber};
+    cout << connectivity;
+
 //take the sum of each value and put it in vector
     for(int i = 0; i < S.getRow(); i++){
         sum = 0;
@@ -25,7 +44,6 @@ int main() {
         }
         sumColumns.push_back(sum);
     }
-    cout << S;
 //divide the sum of each column by it value.
     for(int i = 0; i < S.getRow(); i++){
         for(int k = 0; k < S.getColumns(); k++){
@@ -33,7 +51,6 @@ int main() {
                 S.set_value(i, k, (S.get_value(i, k) / sumColumns.at(i)));
         }
     }
-    cout << S;
 //Set last column to 0.25
     for(int k = 0; k < S.getColumns(); k++){
         S.set_value(k,3,randChance);
