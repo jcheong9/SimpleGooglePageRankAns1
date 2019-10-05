@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include <iomanip>
 #include "ConnectivityMatrix.hpp"
 #include "calculationMatrix.hpp"
 //Set of websites
@@ -13,7 +13,7 @@ int main() {
     //read file
     readFile(&numInText);
     ConnectivityMatrix S{numInText};
-    //create matrices 
+    //create matrices
     Matrix Q{S.getRow()};
     Matrix M{S.getRow()};
     Matrix rankMat{S.getRow(), 1};
@@ -28,13 +28,14 @@ int main() {
     printRanking( rankMat);
     return 0;
 }
+//print and format rank matrix
 void printRanking(Matrix rankMat){
-    cout << "Page A: " << to_string(rankMat.get_value(0,0)).substr(0, 5) << "%" << endl;
-    cout << "Page B: " << to_string(rankMat.get_value(1,0)).substr(0, 5) << "%" << endl;
-    cout << "Page C: " << to_string(rankMat.get_value(2,0)).substr(0, 5) << "%" << endl;
-    cout << "Page D: " << to_string(rankMat.get_value(3,0)).substr(0, 4) << "%" << endl;
+    cout << "Page A: " << fixed << setprecision(2) << rankMat.get_value(0,0) << "%" << endl;
+    cout << "Page B: " << fixed << setprecision(2) << rankMat.get_value(1,0) << "%" << endl;
+    cout << "Page C: " << fixed << setprecision(2) << rankMat.get_value(2,0) << "%" << endl;
+    cout << "Page D: " << fixed << setprecision(2) << rankMat.get_value(3,0) << "%" << endl;
 }
-
+//read the files
 void readFile(vector<double> *numInText){
     ifstream infile;
     infile.open("../connectivity.txt");
