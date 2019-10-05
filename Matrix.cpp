@@ -27,7 +27,7 @@ Matrix::Matrix(int r, int c){
 //constructor take vector parameter
 Matrix::Matrix(vector<double> vec){
     double sr = sqrt(vec.size());
-    if((sr - floor(sr)) != 0 || sr == 0) {
+    if((sr - floor(sr)) != 0 ) {
         throw "array must be integer square";
     }
     col = sr;
@@ -97,7 +97,7 @@ void Matrix::clear(){
 //copy& swap method introducing in class
 Matrix& Matrix::operator=(Matrix a){
     if (this->row != a.row || this->col != a.col) {
-        throw string("The martix is not the same size.\n");
+        throw "The martix is not the same size.\n";
     }else {
         mySwap(*this, a);
         return *this;

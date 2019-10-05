@@ -17,9 +17,9 @@ private:
 public:
     //constructors
     Matrix();
-    explicit Matrix(int n);
+    Matrix(int n);
     Matrix(int r, int c);
-    explicit Matrix(vector<double> vec);
+    Matrix(vector<double> vec);
 
     //functions prototypes
     double const get_value(int r, int c);
@@ -29,7 +29,7 @@ public:
     static vector<vector<double>> createMatrix(int w, int h);
     void set_value(int r, int c, double value);
     void clear();
-    void mySwap(Matrix& a, Matrix& b);
+    static void mySwap(Matrix& a, Matrix& b);
     friend ostream& operator<<(ostream& os, const Matrix& matrix);
     friend bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo);
     friend bool operator!=(const Matrix& matrixOne, const Matrix& matrixTwo);
@@ -41,9 +41,9 @@ public:
     Matrix& operator+=(const Matrix& matrixOne);
     Matrix& operator-=(const Matrix& matrixOne);
     Matrix operator++();
-    const Matrix operator++(int);
+    Matrix operator++(int);
     Matrix operator--();
-    const Matrix operator--(int);
+    Matrix operator--(int);
     ~Matrix()= default;;
 };
 
