@@ -131,7 +131,7 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
         }
     }
 }
-//adds the two matrices returns Martix
+//adds the two matrices returns matrix
  Matrix operator+(Matrix lhs, const Matrix& rhs){
      if (lhs.row != rhs.row || lhs.col != rhs.col) {
          throw "The martix is not the same size.";
@@ -216,7 +216,7 @@ Matrix Matrix::operator--(int){
     operator--();
     return tmp;
 };
-//multiplying the two matrices returns Martix
+//multiplying the two matrices returns matrix
  Matrix Matrix::operator*=(const Matrix& matrixOne){
      this->vectMatrix = operator*(*this,matrixOne).vectMatrix;
      return *this;

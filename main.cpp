@@ -4,19 +4,19 @@
 #include "ConnectivityMatrix.hpp"
 #include "calculationMatrix.hpp"
 //Set of websites
-const int n = 4;
 //function prototypes
 void readFile(vector<double> *numInText);
 void printRanking(Matrix rankMat);
 
 int main() {
-    Matrix Q{n};
-    Matrix M{n};
-    Matrix rankMat{n, 1};
     vector<double> numInText;
     //read file
     readFile(&numInText);
     ConnectivityMatrix S{numInText};
+    //create matrices 
+    Matrix Q{S.getRow()};
+    Matrix M{S.getRow()};
+    Matrix rankMat{S.getRow(), 1};
     //set up S and Q for summation
     setClickLinksAndTeleport(&S, &Q);
     //add S and Q to get M
@@ -37,7 +37,7 @@ void printRanking(Matrix rankMat){
 
 void readFile(vector<double> *numInText){
     ifstream infile;
-    infile.open("connectivity.txt");
+    infile.open("../connectivity.txt");
     string line;
     stringstream stream;
     if (infile.is_open()) {
