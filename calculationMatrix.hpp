@@ -7,18 +7,13 @@
 
 #include "ConnectivityMatrix.hpp"
 
-//vector<double> sumColumns;
-//ConnectivityMatrix S{sizeConMatrix};
-//Matrix Q{sizeConMatrix};
-//Matrix M{sizeConMatrix};
-//Matrix rankMat{4,1};
-//double sum;
-//double sumRank;
+//constant
 const double randChance = 0.25;
 const double probClickValue = 0.85;
 const double probTelValue = 0.15;
 
 //function prototypes
+void setClickLinksAndTeleport(ConnectivityMatrix *S, Matrix *Q);
 void sumColumnDivideBySum(ConnectivityMatrix *S);
 void setLastColumnRandomChance(ConnectivityMatrix *S);
 void setAllValuesToRandomChance(Matrix *Q);

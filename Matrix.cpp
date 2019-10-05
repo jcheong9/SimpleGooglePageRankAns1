@@ -27,14 +27,13 @@ Matrix::Matrix(int r, int c){
 //constructor take vector parameter
 Matrix::Matrix(vector<double> vec){
     double sr = sqrt(vec.size());
-    if(!(sr - floor(sr)) == 0 || sr == 0) {
-    throw "array must be integer square";
+    if((sr - floor(sr)) != 0 || sr == 0) {
+        throw "array must be integer square";
     }
     col = sr;
     row = sr;
     vectMatrix = createMatrixSquare(vec);
 };
-
 //get value of matrix at user's input
 double const Matrix::get_value(int r, int c){
     if(r > row || c > col || r < 0 || c < 0){

@@ -3,47 +3,41 @@
 #include <sstream>
 #include "ConnectivityMatrix.hpp"
 #include "calculationMatrix.hpp"
-
+//constant
 const int sizeConMatrix = 4;
-//const double randChance = 0.25;
-//const double probClickValue = 0.85;
-//const double probTelValue = 0.15;
+//function prototypes
 void readFile(vector<double> *numInText);
+void printRanking(Matrix rankMat);
 
 int main() {
-//    vector<double> sumColumns;
     ConnectivityMatrix S{sizeConMatrix};
     Matrix Q{sizeConMatrix};
     Matrix M{sizeConMatrix};
-    Matrix rankMat{4,1};
+    Matrix rankMat{sizeConMatrix,1};
     vector<double> numInText;
-    vector<double> fileVectNumber;
+    //read file
     readFile(&numInText);
     Matrix connectivity{numInText};
 
+    //set up S and Q for summation
+    setClickLinksAndTeleport(&S, &Q);
 
-    sumColumnDivideBySum(&S);
-    setLastColumnRandomChance(&S);
-    setAllValuesToRandomChance(&Q);
-    setRandomWalkProbability(&S);
-    setTeleportationProbability(&Q);
-
-//add S and Q to get M
+    //add S and Q to get M
     M = (S + Q);
 
     setRankMatrixToOnes(&rankMat);
     rankMat = applyMarkovProcess(M, rankMat);
+    //print out result and format
+    printRanking( rankMat);
 
-//print out result and format
+    return 0;
+}
+void printRanking(Matrix rankMat){
     cout << "Page A: " << to_string(rankMat.get_value(0,0)).substr(0, 5) << "%" << endl;
     cout << "Page B: " << to_string(rankMat.get_value(1,0)).substr(0, 5) << "%" << endl;
     cout << "Page C: " << to_string(rankMat.get_value(2,0)).substr(0, 5) << "%" << endl;
     cout << "Page D: " << to_string(rankMat.get_value(3,0)).substr(0, 4) << "%" << endl;
-    return 0;
 }
-//void printRanking(){
-//
-//}
 
 
 void readFile(vector<double> *numInText){

@@ -17,9 +17,9 @@ private:
 public:
     //constructors
     Matrix();
-    Matrix(int n);
+    explicit Matrix(int n);
     Matrix(int r, int c);
-    Matrix(vector<double> vec);
+    explicit Matrix(vector<double> vec);
 
     //functions prototypes
     double const get_value(int r, int c);
@@ -41,10 +41,10 @@ public:
     Matrix& operator+=(const Matrix& matrixOne);
     Matrix& operator-=(const Matrix& matrixOne);
     Matrix operator++();
-    Matrix operator++(int);
+    const Matrix operator++(int);
     Matrix operator--();
-    Matrix operator--(int);
-    ~Matrix(){};
+    const Matrix operator--(int);
+    ~Matrix()= default;;
 };
 
 #endif //MATRIX_MATRIX_HPP
