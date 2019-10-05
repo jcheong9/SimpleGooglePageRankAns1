@@ -5,19 +5,23 @@
 #include "calculationMatrix.hpp"
 
 ////take the sum of each value and put it in vector
-//for(int i = 0; i < S.getRow(); i++){
-//sum = 0;
-//for(int k = 0; k < S.getColumns(); k++){
-//sum+=S.get_value(i, k);
-//}
-//sumColumns.push_back(sum);
-//}
 ////divide the sum of each column by it value.
-//for(int i = 0; i < S.getRow(); i++){
-//for(int k = 0; k < S.getColumns(); k++){
-//if(S.get_value(i, k) != 0)
-//S.set_value(i, k, (S.get_value(i, k) / sumColumns.at(i)));
-//}
+//void sumColumn(){
+//    double sum;
+//    for(int i = 0; i < S.getRow(); i++){
+//    sum = 0;
+//        for(int k = 0; k < S.getColumns(); k++){
+//            sum+=S.get_value(i, k);
+//        }
+//        sumColumns.push_back(sum);
+//    }
+//    for(int i = 0; i < S.getRow(); i++){
+//        for(int k = 0; k < S.getColumns(); k++){
+//            if(S.get_value(i, k) != 0)
+//            S.set_value(i, k, (S.get_value(i, k) / sumColumns.at(i)));
+//        }
+//    }
+//
 //}
 ////Set last column to 0.25
 //for(int k = 0; k < S.getColumns(); k++){

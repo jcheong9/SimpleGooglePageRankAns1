@@ -2,6 +2,54 @@
 // Created by jcheong on 2019-09-29.
 //
 #include "Matrix.hpp"
+//default constructor
+Matrix::Matrix(){
+    row = 1;
+    col = 1;
+    vectMatrix = createMatrix(1,1);
+}
+//constructor take one parameter
+Matrix::Matrix(int n){
+    if(n <= 0)
+        throw "number enter must be greater than zero";
+    row = n;
+    col = n;
+    vectMatrix = createMatrix(n,n);
+}
+//constructor take two parameter
+Matrix::Matrix(int r, int c){
+    if(r <= 0 || c <= 0)
+        throw "number enter must be greater than zero";
+    row = r;
+    col = c;
+    vectMatrix = createMatrix(r, c);
+}
+//constructor take vector parameter
+Matrix::Matrix(vector<double> vec){
+    double sr = sqrt(vec.size());
+    if(!(sr - floor(sr)) == 0 || sr == 0) {
+    throw "array must be integer square";
+    }
+    col = sr;
+    row = sr;
+    vectMatrix = createMatrixSquare(vec);
+};
+
+//get value of matrix at user's input
+double const Matrix::get_value(int r, int c){
+    if(r > row || c > col || r < 0 || c < 0){
+        throw  "integers are negative or too large.";
+    }
+    return vectMatrix.at(r).at(c);
+};
+//get the row value.
+int const Matrix::getRow(){
+    return row;
+}
+//get the column value
+int const Matrix::getColumns(){
+    return col;
+}
 //create matrix with the two input size.
 vector<vector<double>> Matrix::createMatrix(int w, int h) {
     vector<vector<double> > myVector;
@@ -14,6 +62,7 @@ vector<vector<double>> Matrix::createMatrix(int w, int h) {
     }
     return myVector;
 }
+
 //create perfect square matrix using vector input
 vector<vector<double>> Matrix::createMatrixSquare(vector<double > vec) {
     vector<vector<double >> vec2D;
@@ -36,7 +85,7 @@ void Matrix::set_value(int r, int c, double value){
     }
     vectMatrix.at(r).at(c) = value;
 }
-//make martix all zeros
+//make matrix all zeros
 void Matrix::clear(){
     for (int i = 0; i < row; i++) {
         vector<double> temp;
@@ -97,7 +146,7 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
         return temp;
      }
  }
- //subtract the two matrices returns Martix
+ //subtract the two matrices returns Matrix
  Matrix operator-(Matrix lhs, const Matrix& rhs){
      if (lhs.row != rhs.row && lhs.col != rhs.col) {
          throw "The matrix is not the same size.";
@@ -110,7 +159,7 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
          }
      return temp;
  }
- //multiplying the two matrices returns Martix
+ //multiplying the two matrices returns Matrix
  Matrix operator*(Matrix lhs, const Matrix& rhs) {
      if (lhs.col != rhs.row) {
          throw "The matrix lhs columns must be same as matrix rhs rows";

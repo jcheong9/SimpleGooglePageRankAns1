@@ -7,6 +7,7 @@ const int sizeConMatrix = 4;
 const double randChance = 0.25;
 const double probClickValue = 0.85;
 const double probTelValue = 0.15;
+void readFile(vector<double> *numInText);
 
 int main() {
     vector<double> sumColumns;
@@ -14,32 +15,13 @@ int main() {
     Matrix Q{sizeConMatrix};
     Matrix M{sizeConMatrix};
     Matrix rankMat{4,1};
-    double sum;
     double sumRank = 0;
     vector<double> numInText;
     vector<double> fileVectNumber;
-    ifstream infile;
-    infile.open("connectivity.txt");
-    bool open = infile.is_open();
-    string line;
-    stringstream stream;
-
-    if (infile.is_open()) {
-        while(!infile.eof()){
-            stream.clear();
-            getline(infile, line);
-            stream.str(line);
-            for (int i; stream >> i;) {
-                numInText.push_back(i);
-                if (stream.peek() == ' ')
-                    stream.ignore();
-            }
-        }
-    }
-    infile.close();
+    readFile(&numInText);
     Matrix connectivity{numInText};
     cout << connectivity;
-
+    int sum;
 //take the sum of each value and put it in vector
     for(int i = 0; i < S.getRow(); i++){
         sum = 0;
@@ -102,5 +84,23 @@ int main() {
     return 0;
 }
 
-void readFile(){}
+void readFile(vector<double> *numInText){
+    ifstream infile;
+    infile.open("connectivity.txt");
+    string line;
+    stringstream stream;
+    if (infile.is_open()) {
+        while(!infile.eof()){
+            stream.clear();
+            getline(infile, line);
+            stream.str(line);
+            for (int i; stream >> i;) {
+                numInText->push_back(i);
+                if (stream.peek() == ' ')
+                    stream.ignore();
+            }
+        }
+    }
+    infile.close();
+}
 

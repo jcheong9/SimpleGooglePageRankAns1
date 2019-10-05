@@ -15,63 +15,20 @@ private:
     int col;
     vector<vector<double>> vectMatrix;
 public:
-    //default constructor
-    Matrix(){
-        row = 1;
-        col = 1;
-        vectMatrix = createMatrix(1,1);
-    }
-    //constructor take one parameter
-    Matrix(int n){
-        if(n <= 0)
-            throw "number enter must be greater than zero";
-        row = n;
-        col = n;
-        vectMatrix = createMatrix(n,n);
-    }
-    //constructor take two parameter
-    Matrix(int r, int c){
-        if(r <= 0 || c <= 0)
-            throw "number enter must be greater than zero";
-        row = r;
-        col = c;
-        vectMatrix = createMatrix(r, c);
-    }
-    //constructor take vector parameter
-    Matrix(vector<double> vec){
-        double sr = sqrt(vec.size());
-        if(!(sr - floor(sr)) == 0 || sr == 0) {
-            throw "array must be integer square";
-        }
-        col = sr;
-        row = sr;
-        vectMatrix = createMatrixSquare(vec);
-    }
-    //get value of matrix at user's input
-    double const get_value(int r, int c){
-        if(r > row || c > col || r < 0 || c < 0){
-            throw  "integers are negative or too large.";
-        }
-        return vectMatrix.at(r).at(c);
-    };
-    //get the row value.
-    const int getRow(){
-        return row;
-    }
-    //get the column value
-    const int getColumns(){
-        return col;
-    }
-    //get the vector list values.
-    const vector<vector<double>> getMatrixVector(){
-        return vectMatrix;
-    }
+    //constructors
+    Matrix();
+    Matrix(int n);
+    Matrix(int r, int c);
+    Matrix(vector<double> vec);
+
     //functions prototypes
+    double const get_value(int r, int c);
+    int const getRow();
+    int const getColumns();
     vector<vector<double>> createMatrixSquare(vector<double > vec);
     static vector<vector<double>> createMatrix(int w, int h);
     void set_value(int r, int c, double value);
     void clear();
-    Matrix& operator=(Matrix a);
     void mySwap(Matrix& a, Matrix& b);
     friend ostream& operator<<(ostream& os, const Matrix& matrix);
     friend bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo);
@@ -79,6 +36,7 @@ public:
     friend Matrix operator-(Matrix lhs, const Matrix& rhs);
     friend Matrix operator+(Matrix lhs, const Matrix& rhs);
     friend Matrix operator*(Matrix lhs, const Matrix& rhs);
+    Matrix& operator=(Matrix a);
     Matrix operator*=(const Matrix& matrixOne);
     Matrix& operator+=(const Matrix& matrixOne);
     Matrix& operator-=(const Matrix& matrixOne);
