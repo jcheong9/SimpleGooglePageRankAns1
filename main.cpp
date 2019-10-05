@@ -3,21 +3,20 @@
 #include <sstream>
 #include "ConnectivityMatrix.hpp"
 #include "calculationMatrix.hpp"
-//constant
-const int sizeConMatrix = 4;
+//Set of websites
+const int n = 4;
 //function prototypes
 void readFile(vector<double> *numInText);
 void printRanking(Matrix rankMat);
 
 int main() {
-    ConnectivityMatrix S{sizeConMatrix};
-    Matrix Q{sizeConMatrix};
-    Matrix M{sizeConMatrix};
-    Matrix rankMat{sizeConMatrix,1};
+    Matrix Q{n};
+    Matrix M{n};
+    Matrix rankMat{n, 1};
     vector<double> numInText;
     //read file
     readFile(&numInText);
-    Matrix connectivity{numInText};
+    ConnectivityMatrix S{numInText};
 
     //set up S and Q for summation
     setClickLinksAndTeleport(&S, &Q);

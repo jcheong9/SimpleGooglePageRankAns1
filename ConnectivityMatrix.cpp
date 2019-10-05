@@ -3,7 +3,6 @@
 //
 
 #include "ConnectivityMatrix.hpp"
-
 void ConnectivityMatrix::makeConnectivityMatrix() {
     this->set_value(0,1,1);
     this->set_value(0,2,1);
@@ -12,3 +11,5 @@ void ConnectivityMatrix::makeConnectivityMatrix() {
     this->set_value(2,0,1);
     this->set_value(2,1,1);
 }
+
+ConnectivityMatrix::ConnectivityMatrix(vector<double> vector) : Matrix(vector) {}

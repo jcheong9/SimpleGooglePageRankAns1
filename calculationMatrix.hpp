@@ -7,7 +7,7 @@
 
 #include "ConnectivityMatrix.hpp"
 
-//constant
+//constants
 const double randChance = 0.25;
 const double probClickValue = 0.85;
 const double probTelValue = 0.15;

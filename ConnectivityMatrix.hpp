@@ -9,11 +9,13 @@
 class ConnectivityMatrix: public Matrix{
 
 public:
+    //constructor
     ConnectivityMatrix(const int& size) : Matrix(size){
         makeConnectivityMatrix();
     }
-   //ConnectivityMatrix(const vector<double&> vec) : Matrix(vec);
-    //function prototype
+    ConnectivityMatrix(vector<double> vector);
+
+//function prototype
     void makeConnectivityMatrix();
 };
 #endif //MATRIX_CONNECTIVITYMATRIX_HPP
