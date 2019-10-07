@@ -126,10 +126,13 @@ bool operator==(const Matrix& matrixOne, const Matrix& matrixTwo){
     }
     for (int i = 0; i < matrixOne.row; i++) {
         for (int j = 0; j < matrixOne.col; j++) {
-            return (floor(10000 * matrixOne.vectMatrix.at(i).at(j)) / 10000)
-                   == (floor(10000 * matrixTwo.vectMatrix.at(i).at(j)) / 10000);
+            if ((floor(10000 * matrixOne.vectMatrix.at(i).at(j)) / 10000)
+                    != (floor(10000 * matrixTwo.vectMatrix.at(i).at(j)) / 10000)){
+                return false;
+            }
         }
     }
+    return true;
 }
 //adds the two matrices returns matrix
  Matrix operator+(Matrix lhs, const Matrix& rhs){
